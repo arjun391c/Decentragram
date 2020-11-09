@@ -86,7 +86,7 @@ const App = () => {
 	//   console.log(id, tipAmount)
 	  setLoading(true)
 	  decentragram.methods.tipImageOwner(id).send({from: account, value: tipAmount}).on('transactionHash', (hash) => {
-		  setLoading(false)
+		  	setLoading(false)
 	  })
   }
 
