@@ -14,7 +14,7 @@ const App = () => {
   const [loading, setLoading] = useState(false)
   const [decentragram, setDecentragram] = useState(null)
   const [images, setImages] = useState([])
-  const [imageCount, setImageCount] = useState(null)
+//   const [imageCount, setImageCount] = useState(null)
 
   useEffect(() => {
 	loadWeb3()
@@ -47,7 +47,7 @@ const App = () => {
 		const decentragram = new web3.eth.Contract(Decentragram.abi, networkData.address)
 		setDecentragram(decentragram)
 		const imageCount = await decentragram.methods.imageCount().call()
-		setImageCount(imageCount)
+		// setImageCount(imageCount)
 		// console.log(imageCount)
 		//images
 		for (let i = 1; i <= imageCount; i++) {
@@ -65,12 +65,12 @@ const App = () => {
   }
   
   //upload to ipfs
-  const uploadImage = async(data) => {
-	console.log("uploading to ipfs....",data)
+  const uploadImage = (data) => {
+	console.log("uploading to ipfs....")
 
 	ipfs.add(data.buffer)
 		.then((result) => {
-			// console.log(result)
+			console.log(result)
 			//adding to BC
 			setLoading(true)
 			decentragram.methods.uploadImage(result.path, data.description).send({from: account}).on('transactionHash', (hash) => {
