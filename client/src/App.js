@@ -68,7 +68,7 @@ const App = () => {
   const uploadImage = async(data) => {
 	console.log("uploading to ipfs....",data)
 
-	ipfs.add(data.buffer, { onlyHash: true })
+	ipfs.add(data.buffer)
 		.then((result) => {
 			// console.log(result)
 			//adding to BC
